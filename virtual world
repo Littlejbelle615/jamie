@@ -1,0 +1,415 @@
+package virtual.world;
+
+import java.util.Scanner;
+
+/**
+ *This program is designed to have user interaction throughout the project. The first
+ * part is declaring private variables and  producing output. Then I have added shoutout boxes
+ * and car java programs to interact. 
+ * @author jamie.miles
+ */
+/*
+ * Designed to prompt an user to input their names via the Scanner.util. Welcoming to
+my virtual world.
+ */
+
+package virtual.world;
+
+import java.util.Scanner;
+
+public class MyClone {
+   //Private fields
+  private  String firstName;
+  private  String lastName;
+
+       public MyClone(String firstName, String lastName){
+
+        Scanner in =new Scanner(System.in);
+        System.out.print ("Enter in a First Name: ");
+        firstName = in.nextLine(); //Prints next line of output
+        System.out.print ("Enter in a Last Name: ");
+        lastName = in.nextLine(); //Prints next line of output
+       System.out.println("Welcome to my wonderful world "+ firstName+" "+ lastName);
+    }
+    
+}/************************************************************************************
+/*
+ * The program is designed to bring in another object. I have chosen cars. The user 
+will enter his or her name and input how many cars and what is in their wallet. 
+Here an Exception statement is incorporated so if the user inputs a string instead
+of int the user will be asked again until an int is correctly placed.
+ */
+
+package virtual.world;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+ 
+public class Cars {
+    public static void main(String[] args) {
+        // Initiate a new Scanner
+        Scanner userInputScanner = new Scanner(System.in);
+ 
+        // Testing nextLine();
+        System.out.print("What is your name? ");
+        String name = userInputScanner.nextLine();
+ 
+        // Testing nextInt();
+        boolean validInput = false;
+        int numberOfCars = 0;
+        while (!validInput) {
+            System.out.print("How many cars do you have? ");
+            try {
+                numberOfCars = userInputScanner.nextInt();
+                validInput = true;
+            } catch (InputMismatchException e) {
+                validInput = false;
+                userInputScanner.nextLine();
+            }
+        }
+ 
+        // Testing nextDouble();
+        validInput = false;
+        double moneyInWallet = 0.0;
+        while (!validInput) {
+            System.out.print("How much money is in your wallet? $");
+            try {
+                moneyInWallet = userInputScanner.nextDouble();
+                userInputScanner.nextLine();
+                validInput = true;
+            } catch (InputMismatchException e) {
+                validInput = false;
+                userInputScanner.nextLine();
+            }
+        }
+ 
+        System.out.println("Hello " + name + "! You have " + numberOfCars
+                + (numberOfCars > 1 ? " cars" : "car")
+                + " and $" + moneyInWallet + " in your wallet. Better start saving for another one!! Enjoy your ride.");
+    }
+}/***********************************************************************************
+//defines the scanner method so users can input data
+import java.util.Scanner;
+/** This project is designed to handled static arrays for a user to chose.
+ *
+ * @author jamie.miles
+ */
+public class CannedShoutout {
+    //Declaring Variables
+    private static int i;
+    private static int n;
+
+public static void main (String[] args) { //start of program.
+
+Scanner scan = new Scanner(System.in);
+   // create an array of strings
+ String strState[] = new String[4]; //declaring array of four items
+ 
+              strState[0] ="North Carolina is beautiful.";
+ 
+              strState[1] ="Texas is huge territory.";
+ 
+              strState[2] ="Florida is hot.";
+             
+              strState[3] ="Vermont loves snow.";
+              
+//Printing array
+              for (i=0; i<strState.length; i++){
+                       System.out.println(strState[i]);
+            // These are the results for each array that was entered. 
+		    System.out.print("Select the state you would like to go: " + i);
+		       n = scan.nextInt();
+                      System.out.print("I have chosen: " + n);           
+}
+}	
+}
+
+/************************************************************************************
+/** This program is designed for the user to enter a list of friends. This will 
+ * produce a list of friends. The friend list will allow the user to chose the rider they
+ * would like to ride with.
+ *
+ * @author jamie.miles
+ */
+//defines the scanner method so users can input data
+import java.util.Scanner;
+
+public class ShoutBox {
+    private static int n;
+
+     public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		//Decide the number of friends
+                //Parse allows the integer entered to be a seperate piece.
+		System.out.print("Enter how many friends: ");
+		int numOfFriends = Integer.parseInt(scan.nextLine());
+		//Create a string array to store the names of your friends
+		String arrayOfNames[] = new String[numOfFriends];
+                
+                //For loop allows user to input a name and save it in an index.
+		for (int i = 0; i < arrayOfNames.length; i++) {
+			System.out.print("Enter the name of friend " + (i+1) + " : ");
+		        arrayOfNames[i] = scan.nextLine();
+		}		    
+		//Now show your friend's name one by one
+		for (int i = 0; i < arrayOfNames.length; i++) {
+// These are the results for each array that was entered. 
+		    System.out.print("Select your friend's number: " + i);
+		       n = scan.nextInt();
+                      System.out.print("I have chosen: " + n);                  
+		}
+     }
+}
+
+/***********************************************************************************
+/*
+ * This program is designed to put a sentence in the form of a question. The project puts together 
+*random questions then outputs a selected sentence for the end-user. */
+
+package virtual.world;
+
+import java.util.Random;
+ 
+public class Question {
+  String[] questions = new String[10];
+   
+  public Question() {
+    // eight prefixes to be chosen at random
+    String [] prefix = 
+      {"What", "How", "When", "Why", "Are", "Do", "Then", "Like"};
+    // eight basic, first category words to be chosen at random
+    String [] wordsOne = 
+      {"time", "day", "cool", "hungry", "is", "can't", "you", "enjoy"};
+    // eight basic, second category words to be chosen at random
+    String [] wordsTwo = 
+      {"who", "awesome", "green", "really", "tslow", "move", "look", "yellow"};
+    // eight basic, third category words to be chosen at random
+    String [] wordsThr = 
+      {"money", "cheese", "run", "couch", "concept", "it", "cat", "factor"};
+    // only one suffix
+    String suffix = "?";
+     
+    Random rand = new Random(); 
+    // choose random prefixes and words to make randomly made questions
+    for (int i = 0; i < questions.length; ++i) {
+      questions[i] = 
+        prefix[rand.nextInt(8)] + " "
+          + wordsOne[rand.nextInt(8)] + " "
+            + wordsTwo[rand.nextInt(8)] + " "
+              + wordsThr[rand.nextInt(8)] + suffix;      
+    }
+  }
+     
+  public String[] generateRandomQuestions() {
+    Random randomGen = new Random();    
+     
+    System.out.println("Your random questions includes: " + questions[randomGen.nextInt(10)]); 
+     
+    return questions;        
+  }
+   
+  public String[] generateRandomQuestion() {
+    Random randomGen = new Random();    
+     
+    System.out.println("Your random question is: ");
+    
+    for (int q = 0; q < questions.length * 2; ++q) { 
+      System.out.println(questions[randomGen.nextInt(10)]); 
+}
+    
+ 
+    return questions;        
+  }
+   
+  public static void main(String[] args) {
+    Question q = new Question();
+    q.generateRandomQuestions();
+    q.generateRandomQuestion();
+  }
+}
+
+/********************************************************************************
+package virtual.world;
+
+import java.util.Scanner;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *This is to unit test MyClone
+ * @author jamie.miles
+ */
+public class MyCloneTest {
+    
+    public MyCloneTest() {
+    }
+         //Private fields
+  private  String firstName;
+  private  String lastName;
+
+    public MyCloneTest(String firstName, String lastName){
+
+        Scanner in =new Scanner(System.in);
+        System.out.print ("Enter in a First Name: ");
+        firstName = in.nextLine(); //Prints next line of output
+        System.out.print ("Enter in a Last Name: ");
+        lastName = in.nextLine(); //Prints next line of output
+       System.out.println("Welcome to my wonderful world "+ firstName+" "+ lastName);
+    }
+    }
+
+/****************************************************************************
+package virtual.world;
+
+import java.util.Scanner;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *Testing of ShoutBox to ensure the accuracy of the code is pulling the correct data
+ * and pulling the correct friend. 
+ * 
+ */
+public class ShoutBoxTest {
+    private static int n;
+
+     public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		//Decide the number of friends
+                //Parse allows the integer entered to be a seperate piece.
+		System.out.print("Enter how many friends: ");
+		int numOfFriends = Integer.parseInt(scan.nextLine());
+		//Create a string array to store the names of your friends
+		String arrayOfNames[] = new String[numOfFriends];
+                
+                //For loop allows user to input a name and save it in an index.
+		for (int i = 0; i < arrayOfNames.length; i++) {
+			System.out.print("Enter the name of friend " + (i+1) + " : ");
+		        arrayOfNames[i] = scan.nextLine();
+		}		    
+		//Now show your friend's name one by one
+		for (int i = 0; i < arrayOfNames.length; i++) {
+// These are the results for each array that was entered. 
+		    System.out.print("Select your friend's number: " + i);
+		       n = scan.nextInt();
+                      System.out.print("I have chosen: " + n);                  
+		}
+     }
+}
+
+/************************************************************************
+package virtual.world;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *This is a unit test for an additional object for the virtual file.
+ * 
+ */
+public class CarsTest {
+    
+    public static void main(String[] args) {
+        // Initiate a new Scanner
+        Scanner userInputScanner = new Scanner(System.in);
+ 
+        // Testing nextLine();
+        System.out.print("What is your name? ");
+        String name = userInputScanner.nextLine();
+ 
+        // Testing nextInt();
+        boolean validInput = false;
+        int numberOfCars = 0;
+        while (!validInput) {
+            System.out.print("How many cars do you have? ");
+            try {
+                numberOfCars = userInputScanner.nextInt();
+                validInput = true;
+            } catch (InputMismatchException e) {
+                validInput = false;
+                userInputScanner.nextLine();
+            }
+        }
+ 
+        // Testing nextDouble();
+        validInput = false;
+        double moneyInWallet = 0.0;
+        while (!validInput) {
+            System.out.print("How much money is in your wallet? $");
+            try {
+                moneyInWallet = userInputScanner.nextDouble();
+                userInputScanner.nextLine();
+                validInput = true;
+            } catch (InputMismatchException e) {
+                validInput = false;
+                userInputScanner.nextLine();
+            }
+        }
+ 
+        System.out.println("Hello " + name + "! You have " + numberOfCars
+                + (numberOfCars > 1 ? " cars" : "car")
+                + " and $" + moneyInWallet + " in your wallet. Better start saving for another one!! Enjoy your ride.");
+    }
+}
+
+/***************************************************************************
+package virtual.world;
+
+import java.util.Scanner;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *Designed to test the CannedShoutoutMethod. 
+ */
+public class CannedShoutoutTest {
+    
+     //Declaring Variables
+    private static int i;
+    private static int n;
+
+public static void main (String[] args) { //start of program.
+
+Scanner scan = new Scanner(System.in);
+   // create an array of strings
+ String strState[] = new String[4]; //declaring array of four items
+ 
+              strState[0] ="North Carolina is beautiful.";
+ 
+              strState[1] ="Texas is huge territory.";
+ 
+              strState[2] ="Florida is hot.";
+             
+              strState[3] ="Vermont loves snow.";
+              
+//Printing array
+              for (i=0; i<strState.length; i++){
+                       System.out.println(strState[i]);
+            // These are the results for each array that was entered. 
+		    System.out.print("Select the state you would like to go: " + i);
+		       n = scan.nextInt();
+                      System.out.print("I have chosen: " + n);           
+}
+}	
+}
+
